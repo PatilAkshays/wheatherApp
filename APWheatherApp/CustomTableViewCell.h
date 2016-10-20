@@ -10,7 +10,7 @@
 
 @interface CustomTableViewCell : UITableViewCell
 
-@property (strong, nonatomic) IBOutlet UIStackView *labelDay;
+@property (strong, nonatomic) IBOutlet UILabel *labelDay;
 
 @property (strong, nonatomic) IBOutlet UILabel *labelSky;
 

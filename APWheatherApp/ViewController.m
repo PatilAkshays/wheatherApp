@@ -18,9 +18,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    [self getCurrentLocation];
+   // [self getCurrentLocation];
     
-    [self startLocating];
+
 
 }
 
@@ -31,65 +31,6 @@
 }
 
 
--(void)getCurrentWeatherDataWithLatitude:(double) latitude
-                               longitude:(double) longitude
-                                  APIKey:(NSString *)key {
-    
-    NSString *urlString = [NSString stringWithFormat:@"http://api.openweathermap.org/data/2.5/weather?lat=%f&lon=%f&APPID=%@&units=metric",latitude,longitude,key];
-    
-  //@"http://api.openweathermap.org/data/2.5/forecast/daily?lat=%f&lon=%f&APPID=%@&units=metric",latitude,longitude,key];
-                           
-                           
-    
-    NSLog(@"%@",urlString);
-    NSURL *url = [NSURL URLWithString:urlString];
-    
-    NSURLSession *mySession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    
-    NSURLSessionDataTask *task = [mySession dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        
-        if (error) {
-            //alert
-        }
-        else {
-            if (response) {
-                
-                NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-                
-                if (httpResponse.statusCode == 200) {
-                    
-                    if (data) {
-                        //start json parsing
-                        
-                        
-                        NSError *error;
-                        NSDictionary *jsonDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-                        
-                        if (error) {
-                            //alert
-                        }
-                        else{
-                            
-                            [self performSelectorOnMainThread:@selector(updateUI:) withObject:jsonDictionary waitUntilDone:NO];
-                        }
-                    }
-                    else {
-                        //alert
-                    }
-                }
-                else {
-                    //alert
-                }
-            }
-            else {
-                //alert
-            }
-        }
-    }];
-    
-    [task resume];
-    
-}
 
 
 -(void)getForcastWeatherDataWithLatitude:(double) latitude
@@ -107,6 +48,8 @@
         
         if (error) {
             //alert
+            
+            NSLog(@"%@",error.localizedDescription);
         }
         else {
             if (response) {
@@ -153,54 +96,14 @@
 
     dataList = [resultTableDictionary valueForKey:@"list"];
     
-    
+   
     [self.dataTableView reloadData];
+    
+    
 
 }
 
 
--(void)updateUI:(NSDictionary *)resultDictionary {
-    
-    NSLog(@"%@",resultDictionary);
-    
-    NSString *temperature = [NSString stringWithFormat:@"%@",[resultDictionary valueForKeyPath:@"main.temp"]];
-    
-    NSLog(@"\n\nTEMPERATURE BEFORE : %@",temperature);
-    
-    int temp = temperature.intValue;
-    
-    temperature = [NSString stringWithFormat:@"%d °C",temp];
-    
-    
-    NSLog(@"\n\nTEMPERATURE AFTER: %@",temperature);
-    
-    NSArray *weather = [resultDictionary valueForKey:@"weather"];
-    
-    NSLog(@"%@",weather);
-    
-    NSDictionary *weatherDictionary = weather.firstObject;
-    
-    
-    
-    
-    NSString *condition = [NSString stringWithFormat:@"%@",[weatherDictionary valueForKey:@"description"]];
-    
-    NSLog(@"%@",condition);
-    
-    
-    NSString *city = [NSString stringWithFormat:@"%@",[resultDictionary valueForKey:@"name"]];
-    
-    NSString *country = [NSString stringWithFormat:@"%@",[resultDictionary valueForKeyPath:@"sys.country"]];
-
-
-    
-    self.labelPlace.text = city;
-    self.labelTimeDate.text = condition.capitalizedString;
-    self.labelCurrentTemp.text = temperature;
-    self.labelStatus.text = country;
-    
-    
-}
 
 
 -(void)startLocating {
@@ -236,8 +139,9 @@
     
     
     
-    [self getCurrentWeatherDataWithLatitude:currentLatitude.intValue longitude:currentLongitude.intValue APIKey:kWeatherAPIKey];
+   // [self getCurrentWeatherDataWithLatitude:currentLatitude.intValue longitude:currentLongitude.intValue APIKey:kWeatherAPIKey];
 
+    [self getForcastWeatherDataWithLatitude:currentLatitude.intValue longitude:currentLongitude.intValue APIKey:kWeatherAPIKey];
 
 
 }
@@ -252,11 +156,8 @@
 
 - (IBAction)getWheatherAction:(id)sender {
     
-    //[self startLocating];
+    [self startLocating];
     
-    [self getForcastWeatherDataWithLatitude:currentLatitude.intValue longitude:currentLongitude.intValue APIKey:kWeatherAPIKey];
-
-    //[self getCurrentWeatherDataWithLatitude:currentLatitude.intValue longitude:currentLongitude.intValue APIKey:kWeatherAPIKey];
 
 
 }
@@ -277,15 +178,39 @@
     
     CustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Custom_Cell"];
     
-    
     NSDictionary *dailyDictionary = [dataList objectAtIndex:indexPath.row];
+
     
-    NSLog(@"%@",dailyDictionary);
+    NSString *unix = [dailyDictionary valueForKey:@"dt"];
+    
+    
+    NSLog(@"%d",unix.intValue);
     
     
     
+    double unixTimeStamp = unix.intValue;
     
-    cell.labelTemprature.text = [NSString stringWithFormat:@"%@",[dailyDictionary valueForKeyPath:@"temp.day"]];
+    NSTimeInterval _interval  =   unixTimeStamp;
+    
+    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:_interval];
+    
+    NSDateFormatter *formatterDay= [[NSDateFormatter alloc] init];
+    
+    [formatterDay setLocale:[NSLocale currentLocale]];
+    
+    [formatterDay setDateFormat:@"EEEE"];
+    
+    NSString *dayString = [formatterDay stringFromDate:date];
+    
+    
+       //NSLog(@"%@",dailyDictionary);
+    
+    
+    cell.labelDay.text = [NSString stringWithFormat:@"%@",dayString];
+    
+    
+    
+    cell.labelTemprature.text = [NSString stringWithFormat:@"%@°C",[dailyDictionary valueForKeyPath:@"temp.day"]];
     
     cell.labelHumidity.text = [NSString stringWithFormat:@"%@",[dailyDictionary valueForKeyPath:@"humidity"]];
     
@@ -293,14 +218,10 @@
 
     NSArray *weather = [dailyDictionary valueForKey:@"weather"];
     
-   // NSLog(@"%@",weather);
     
     NSDictionary *weatherDictionary1 = weather.firstObject;
 
-    
-  //  NSDictionary *weatherDictionary = weather.lastObject;
 
-   // cell.labelSky.text = [NSString stringWithFormat:@"%@",[weatherDictionary valueForKey:@"main"]];
 
    cell.labelSky.text = [NSString stringWithFormat:@"%@",[weatherDictionary1 valueForKey:@"description"]];
     
@@ -312,7 +233,45 @@
 }
 
 
+//NSString *unix = [NSString stringWithFormat:@"%@",[dataList valueForKey:@"dt"]];
+//
+//
+//NSLog(@"%d",unix.intValue);
+//
+//
+//
+//double unixTimeStamp = unix.intValue;
+//
+//NSTimeInterval _interval  =   unixTimeStamp;
+//
+//NSDate *date = [NSDate dateWithTimeIntervalSinceNow:_interval];
+//
+//NSDateFormatter *formatterDate= [[NSDateFormatter alloc] init];
+//NSDateFormatter *formatterDay= [[NSDateFormatter alloc] init];
+//
+//NSDateFormatter *formatterHours= [[NSDateFormatter alloc] init];
+//
+//
+//[formatterDate setLocale:[NSLocale currentLocale]];
+//[formatterDay setLocale:[NSLocale currentLocale]];
+//
+//[formatterHours setLocale:[NSLocale currentLocale]];
+//
+//
+//[formatterDate setDateFormat:@"MMMM dd yyyy"];
+//
+//[formatterDay setDateFormat:@"EEEE"];
+//
+//[formatterHours setDateFormat:@"HH:mm:ss"];
+//
+//
+//NSString *dateString = [formatterDate stringFromDate:date];
+//NSString *dayString = [formatterDay stringFromDate:date];
+//NSString *hoursString = [formatterHours stringFromDate:date];
 
-    
+
+
+
+
 
 @end

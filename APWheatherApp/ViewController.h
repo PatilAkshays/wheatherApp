@@ -23,6 +23,7 @@
     NSString *currentLongitude;
     NSMutableArray  *dataList;
     NSArray *week;
+    
 }
 
 
