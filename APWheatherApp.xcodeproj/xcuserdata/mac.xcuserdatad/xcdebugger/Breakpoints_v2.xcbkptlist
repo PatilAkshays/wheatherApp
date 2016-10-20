@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "APWheatherApp/ViewController.m"
-            timestampString = "498658952.920716"
+            timestampString = "498684837.393741"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "213"
-            endingLineNumber = "213"
+            startingLineNumber = "254"
+            endingLineNumber = "254"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "APWheatherApp/ViewController.m"
-            timestampString = "498655940.887857"
+            timestampString = "498678900.636567"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
             landmarkName = "-updateUIForWeeklyData:"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "APWheatherApp/ViewController.m"
-            timestampString = "498655940.887857"
+            timestampString = "498684837.393741"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
             landmarkName = "-startLocating"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "APWheatherApp/ViewController.m"
-            timestampString = "498655940.887857"
+            timestampString = "498684837.393741"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
             landmarkName = "-locationManager:didUpdateLocations:"
             landmarkType = "5">
          </BreakpointContent>
@@ -138,7 +138,7 @@
                   moduleName = "APWheatherApp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Desktop/APWheatherApp/APWheatherApp/ViewController.m"
-                  timestampString = "498655941.010761"
+                  timestampString = "498684837.496593"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "47"
@@ -153,7 +153,7 @@
                   moduleName = "APWheatherApp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/mac/Desktop/APWheatherApp/APWheatherApp/ViewController.m"
-                  timestampString = "498655941.011208"
+                  timestampString = "498684837.496858"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "49"
@@ -176,6 +176,22 @@
             startingLineNumber = "52"
             endingLineNumber = "52"
             landmarkName = "-getForcastWeatherDataWithLatitude:longitude:APIKey:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "APWheatherApp/ViewController.m"
+            timestampString = "498684837.393741"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "-updateUIForWeeklyData:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

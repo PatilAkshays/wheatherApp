@@ -14,7 +14,6 @@
     [super awakeFromNib];
     // Initialization code
     
-    _labelDay.textColor = [UIColor grayColor];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -28,6 +28,7 @@
 
 
 @property (strong, nonatomic) IBOutlet UITableView *dataTableView;
+@property (strong, nonatomic) IBOutlet UILabel *labelTime;
 
 @property (strong, nonatomic) IBOutlet UIButton *getCurrentLocation;
 

@@ -96,6 +96,48 @@
 
     dataList = [resultTableDictionary valueForKey:@"list"];
     
+    NSString *unix = [NSString stringWithFormat:@"%@",[dataList valueForKey:@"dt"]];
+    
+    double unixTimeStamp = unix.intValue;
+    
+    NSTimeInterval _interval  =   unixTimeStamp;
+    
+    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:_interval];
+    
+    NSDateFormatter *formatterDate= [[NSDateFormatter alloc] init];
+    NSDateFormatter *formatterHours= [[NSDateFormatter alloc] init];
+
+    
+    [formatterDate setLocale:[NSLocale currentLocale]];
+    [formatterHours setLocale:[NSLocale currentLocale]];
+    
+    
+    [formatterDate setDateFormat:@"EEEE dd-MMMM-yyyy"];
+
+    [formatterHours setDateFormat:@"HH:mm a"];
+    
+    
+    NSString *dateString = [formatterDate stringFromDate:date];
+    NSString *hoursString = [formatterHours stringFromDate:date];
+    
+    NSDictionary *currentTemprature = dataList.firstObject;
+    
+    NSDictionary *dic = dataList.firstObject;
+    NSArray *weather = [dic valueForKey:@"weather"];
+    
+    NSDictionary *weatherDictionary = weather.firstObject;
+   
+    
+    _labelStatus.text = [NSString stringWithFormat:@"%@",[weatherDictionary valueForKeyPath:@"description"]];
+    
+    _labelTimeDate.text = [NSString stringWithFormat:@"%@",dateString];
+    _labelTime.text = [NSString stringWithFormat:@"%@",hoursString];
+    
+    _labelCurrentTemp.text = [NSString stringWithFormat:@"%@°C",[currentTemprature valueForKeyPath:@"temp.day"]];
+    
+    _labelPlace.text = [NSString stringWithFormat:@"%@",[resultTableDictionary valueForKeyPath:@"city.name"]];
+
+    
    
     [self.dataTableView reloadData];
     
@@ -180,6 +222,7 @@
     
     NSDictionary *dailyDictionary = [dataList objectAtIndex:indexPath.row];
 
+    NSLog(@"%@",dailyDictionary);
     
     NSString *unix = [dailyDictionary valueForKey:@"dt"];
     
@@ -202,9 +245,7 @@
     
     NSString *dayString = [formatterDay stringFromDate:date];
     
-    
-       //NSLog(@"%@",dailyDictionary);
-    
+        
     
     cell.labelDay.text = [NSString stringWithFormat:@"%@",dayString];
     
@@ -218,12 +259,9 @@
 
     NSArray *weather = [dailyDictionary valueForKey:@"weather"];
     
-    
-    NSDictionary *weatherDictionary1 = weather.firstObject;
+    NSDictionary *weatherDictionary = weather.firstObject;
 
-
-
-   cell.labelSky.text = [NSString stringWithFormat:@"%@",[weatherDictionary1 valueForKey:@"description"]];
+    cell.labelSky.text = [NSString stringWithFormat:@"%@",[weatherDictionary valueForKey:@"description"]];
     
     
     
@@ -231,43 +269,6 @@
     
     return  cell;
 }
-
-
-//NSString *unix = [NSString stringWithFormat:@"%@",[dataList valueForKey:@"dt"]];
-//
-//
-//NSLog(@"%d",unix.intValue);
-//
-//
-//
-//double unixTimeStamp = unix.intValue;
-//
-//NSTimeInterval _interval  =   unixTimeStamp;
-//
-//NSDate *date = [NSDate dateWithTimeIntervalSinceNow:_interval];
-//
-//NSDateFormatter *formatterDate= [[NSDateFormatter alloc] init];
-//NSDateFormatter *formatterDay= [[NSDateFormatter alloc] init];
-//
-//NSDateFormatter *formatterHours= [[NSDateFormatter alloc] init];
-//
-//
-//[formatterDate setLocale:[NSLocale currentLocale]];
-//[formatterDay setLocale:[NSLocale currentLocale]];
-//
-//[formatterHours setLocale:[NSLocale currentLocale]];
-//
-//
-//[formatterDate setDateFormat:@"MMMM dd yyyy"];
-//
-//[formatterDay setDateFormat:@"EEEE"];
-//
-//[formatterHours setDateFormat:@"HH:mm:ss"];
-//
-//
-//NSString *dateString = [formatterDate stringFromDate:date];
-//NSString *dayString = [formatterDay stringFromDate:date];
-//NSString *hoursString = [formatterHours stringFromDate:date];
 
 
 
