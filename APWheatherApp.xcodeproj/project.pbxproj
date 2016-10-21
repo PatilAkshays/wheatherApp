@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		04557F531DB5EACF00155415 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04557F521DB5EACF00155415 /* MapKit.framework */; };
 		046041D21DB7E28600D67A1E /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046041D11DB7E28600D67A1E /* CustomTableViewCell.m */; };
 		04821BA21DB4D36F007FC2E4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04821BA11DB4D36F007FC2E4 /* main.m */; };
 		04821BA51DB4D36F007FC2E4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04821BA41DB4D36F007FC2E4 /* AppDelegate.m */; };
@@ -19,7 +18,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		04557F521DB5EACF00155415 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		046041D01DB7E28600D67A1E /* CustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCell.h; sourceTree = "<group>"; };
 		046041D11DB7E28600D67A1E /* CustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCell.m; sourceTree = "<group>"; };
 		04821B9D1DB4D36F007FC2E4 /* APWheatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = APWheatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -40,7 +38,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04557F531DB5EACF00155415 /* MapKit.framework in Frameworks */,
 				04821BB81DB4EA7D007FC2E4 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -51,7 +48,6 @@
 		04821B941DB4D36E007FC2E4 = {
 			isa = PBXGroup;
 			children = (
-				04557F521DB5EACF00155415 /* MapKit.framework */,
 				04821BB71DB4EA7D007FC2E4 /* CoreLocation.framework */,
 				04821B9F1DB4D36F007FC2E4 /* APWheatherApp */,
 				04821B9E1DB4D36F007FC2E4 /* Products */,

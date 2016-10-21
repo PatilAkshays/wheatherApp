@@ -258,14 +258,14 @@
     cell.labelMain.text = [NSString stringWithFormat:@"%@",[dailyDictionary valueForKeyPath:@"pressure"]];
 
     NSArray *weather = [dailyDictionary valueForKey:@"weather"];
-    
-    NSDictionary *weatherDictionary = weather.firstObject;
 
-    cell.labelSky.text = [NSString stringWithFormat:@"%@",[weatherDictionary valueForKey:@"description"]];
+
+    NSDictionary *weatherDictionary = weather.firstObject;
     
+    NSString *icon = [NSString stringWithFormat:@"%@",[weatherDictionary valueForKey:@"icon"]];
     
-    
-    
+    cell.labelSky.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:icon]];
+
     
     return  cell;
 }
